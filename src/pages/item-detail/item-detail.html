@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="itemdtl">{{itemdtl.asset_make}}</ion-title>
+    </ion-navbar>
+</ion-header>
+      
+      <ion-content padding>
+          
+        <div *ngIf="itemdtl">
+          <h1>{{itemdtl.asset_details}}</h1>         
+          <p>
+            {{itemdtl.date_of_repo}} - {{itemdtl.payment_terms}}
+          </p>
+          <p>{{itemdtl.region}}</p>
+          <p>{{itemdtl.return_status}}</p>
+          
+          <ion-item>
+            <ion-label floating>Comment</ion-label>
+            <ion-input   type="textarea" required maxLength="250" [(ngModel)]="text_comment" ></ion-input>  
+          </ion-item>
+          <div *ngIf="form_valid_error" class="alert alert-danger">{{ form_valid_error }}</div>
+
+          <p><button ion-button small outline block (click)="doConfirm('BACK',itemdtl)"><ion-icon ios="ios-return-left" md="md-return-left"></ion-icon> Back To AMG</button></p>
+          <p><button ion-button small outline block (click)="doConfirm('APPROVE',itemdtl)"><ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>Approve</button></p>
+          <p><button ion-button small outline block (click)="doConfirm('REJECT',itemdtl)"><ion-icon ios="ios-close" md="md-close"></ion-icon> Reject</button></p>
+        </div>
+     </ion-content>

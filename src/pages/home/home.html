@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+</ion-navbar>
+</ion-header>    
+
+<ion-content padding> 
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content  refreshingSpinner="circles"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+      <ion-item-sliding *ngFor="let item of items">
+        <button ion-item (click)="goToItemDetail($event,item)">
+            <h3>{{item.ASSET_DETAILS}}</h3>
+            <p>
+              {{item.DATE_OF_REPO}} &mdash;
+              {{item.note}}
+            </p>
+        </button>
+        </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
